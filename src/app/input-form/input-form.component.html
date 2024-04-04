@@ -1,0 +1,43 @@
+<form [formGroup]="fractionsOperationsForm" (ngSubmit)="onSubmit()">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Додайте дроби та оберіть арифметичну операцію між ними</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+        <ion-card-header>
+          <ion-card-title>Дроби, які беруть участь в арифметичній операції:</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div formArrayName="fractions">
+            <ion-button color="tertiary" (click)="addFraction()">Додати</ion-button>
+            <div *ngFor="let fractionControl of getControls(); let i = index" [formGroupName]="i">
+              <ion-item>
+                <ion-label position="stacked">Чисельник дроба {{i + 1}}</ion-label>
+                <ion-input type="number" formControlName="numerator"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">Знаменник дроба {{i + 1}}</ion-label>
+                <ion-input type="number" formControlName="denominator"></ion-input>
+              </ion-item>
+              <ion-button color="tertiary" (click)="deleteFraction(i)">Видалити</ion-button>
+            </div>
+          </div>
+        </ion-card-content>
+
+        <ion-list>
+          <ion-item>
+            <ion-select formControlName="operation" placeholder="Оберіть операцію">
+              <ion-select-option *ngFor="let operation of Operations" [value]="operation">{{ operation }}</ion-select-option>
+            </ion-select>            
+          </ion-item>
+        </ion-list>
+
+      <ion-button type="submit" color="my-color" expand="block" fill="outline">
+      <!-- <ion-button type="submit" color="my-color" expand="block" fill="outline" [disabled]="!subjectForm.valid"> -->
+        Submit
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+  
+</form>

@@ -1,0 +1,50 @@
+<ion-header [translucent]="true" class="header-container">
+  <ion-toolbar>
+    <ion-title>
+      Модульна контрольна робота №1
+    </ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-title>
+      студентки групи КН-31
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+
+    <ion-title>
+      Промоцької Анастасії Андріївни
+    </ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-title>
+      Варіант 4
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-title size="medium">Завдання</ion-title>
+      <p>
+        Розробити сервіс для арифметичних операцій над звичайними дробами. Дріб задається чисельником і знаменником. Після операцій, дроби, за необхідністю, скоротити. Результат також виводиться у вигляді дробу.
+      </p>
+    </ion-card-header>
+
+    <ion-card-content>
+      <app-input-form (fractionsOutput)="handleFractionsOutput($event)" (calculationOutput)="handleCalculationOutput($event)"></app-input-form>
+      <p *ngIf="fractions.length >= 2">
+        Обчислюємо:
+        {{fractions[0].numerator}}/{{fractions[0].denominator}}
+        {{operation}}
+        {{fractions[1].numerator}}/{{fractions[1].denominator}}
+      </p>
+      
+      <p *ngIf="isCalculated">
+        Результат: {{result.numerator}}/{{result.denominator}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
